@@ -10,27 +10,32 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+    /*
+    creeps统计
+     */
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('Harvesters: ' + harvesters.length);
 
+    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    console.log('Builders ' + builders.length);
+
+    var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    console.log('Upgraders ' + builders.length);
+    /*
+    繁殖控制
+     */
     if(harvesters.length < 8) {
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
     } else {
-        var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        console.log('Builders ' + builders.length);
-
         if(builders.length < 8) {
             var newName = 'Builder' + Game.time;
             console.log('Spawning new builder: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
                 {memory: {role: 'builder'}});
         } else {
-            var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-            console.log('Upgraders ' + builders.length);
-
             if(upgrader.length < 4) {
                 var newName = 'Upgraders' + Game.time;
                 console.log('Spawning new upgrader: ' + newName);
@@ -40,7 +45,9 @@ module.exports.loop = function () {
         }
 
     }
-
+    /*
+    spawn繁殖状态
+     */
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Game.spawns['Spawn1'].room.visual.text(
