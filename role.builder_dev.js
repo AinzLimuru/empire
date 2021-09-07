@@ -21,11 +21,11 @@ var roleBuilder = {
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
-	        if(this.it >= 2){//在各个资源点均匀采集
+	        if(this.it >= 3){//在各个资源点均匀采集
                 this.it = 0;
             }
             if(creep.memory.hasOwnProperty('harvestTarget') == false){
-                creep.memory['harvestTarget'] = this.it;
+                creep.memory['harvestTarget'] = 1 - this.it%2;
                 this.it++;
             }
             if(creep.harvest(sources[creep.memory.harvestTarget]) == ERR_NOT_IN_RANGE) {
