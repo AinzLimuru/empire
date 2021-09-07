@@ -20,7 +20,10 @@ module.exports.loop = function () {
     console.log('Builders ' + builders.length);
 
     var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    console.log('Upgraders ' + builders.length);
+    console.log('Upgraders ' + upgrader.length);
+
+    console.log('Total ' + (harvesters.length + builders.length + upgrader.length));
+
     /*
     繁殖控制
      */
