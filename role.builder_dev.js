@@ -2,7 +2,6 @@ var roleBuilder = {
     it:0,
     /** @param {Creep} creep **/
     run: function(creep) {
-        creep.say('debug');
 	    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {//能量耗尽时采集
             creep.memory.building = false;
             creep.say('🔄 harvest');
