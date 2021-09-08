@@ -33,13 +33,13 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,MOVE], newName,
             {memory: {role: 'harvester'}});
     } else {
-        if(builders.length < 10) {
+        if(builders.length < 0) {
             var newName = 'Builder' + Game.time;
             console.log('Spawning new builder: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,MOVE], newName,
                 {memory: {role: 'builder'}});
         } else {
-            if(upgrader.length < 1) {
+            if(upgrader.length < 10) {
                 var newName = 'Upgraders' + Game.time;
                 console.log('Spawning new upgrader: ' + newName);
                 Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,MOVE], newName,
